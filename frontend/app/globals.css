@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* ── Tokens ────────────────────────────────────────────────── */
+:root {
+  --bg: #0d0f12;
+  --surface: #14161a;
+  --surface-hover: #1c1e24;
+  --border: #282b33;
+  --border-bright: #3c414d;
+  --green: #89b884;
+  --teal: #75a8a0;
+  --blue: #7a94bf;
+  --purple: #aa86c2;
+  --orange: #c7a07c;
+  --red: #c27070;
+  --yellow: #c4ba76;
+  --text: #e8e8e8;
+  --text-dim: #9ca3af;
+  --muted: #6b7280;
+  --subtle: #1e293b;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mixed Media Noise */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 100;
+}
+
+main { position: relative; z-index: 1; }
+
+.font-display {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+}
+
+/* ── Structural Card ───────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+.card:hover {
+  border-color: var(--border-bright);
+}
+.card-glow {
+  border-color: var(--border-bright);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+}
+
+/* ── Typography & Gradients ──────────────────────────────── */
+.grad-text {
+  color: var(--text);
+  font-family: 'Bebas Neue', sans-serif;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.8);
+}
+
+/* ── Badges ─────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-bright);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--surface);
+}
+.badge-green  { color: var(--green); border-bottom: 2px solid var(--green); }
+.badge-teal   { color: var(--teal); border-bottom: 2px solid var(--teal); }
+.badge-blue   { color: var(--blue); border-bottom: 2px solid var(--blue); }
+.badge-purple { color: var(--purple); border-bottom: 2px solid var(--purple); }
+.badge-orange { color: var(--orange); border-bottom: 2px solid var(--orange); }
+
+/* ── Priority ────────────────────────────────────────────── */
+.priority-CRITICAL { background: var(--surface); border: 1px solid var(--red); color: var(--red); }
+.priority-HIGH     { background: var(--surface); border: 1px solid var(--orange); color: var(--orange); }
+.priority-MEDIUM   { background: var(--surface); border: 1px solid var(--yellow); color: var(--yellow); }
+.priority-LOW      { background: var(--surface); border: 1px solid var(--green); color: var(--green); }
+
+/* ── Progress bar ────────────────────────────────────────── */
+.progress-track {
+  height: 4px;
+  background: var(--border);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--text);
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Slider ──────────────────────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 24px;
+  background: var(--text);
+  cursor: pointer;
+  border-radius: 0;
+  transition: transform 0.1s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scaleY(1.2);
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.anim-fade-up  { animation: fadeUp  0.4s ease-out both; }
+.anim-fade-in  { animation: fadeIn  0.3s ease both; }
+.anim-scale-in { animation: scaleIn 0.3s ease-out both; }
+
+.d-0  { animation-delay: 0ms; }
+.d-1  { animation-delay: 80ms; }
+.d-2  { animation-delay: 160ms; }
+.d-3  { animation-delay: 240ms; }
+.d-4  { animation-delay: 320ms; }
+
+/* ── Shimmer loading ─────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg, var(--surface) 0%, var(--border) 50%, var(--surface) 100%);
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border); }
+::-webkit-scrollbar-thumb:hover { background: var(--border-bright); }
+
+/* ── Button ──────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 20px;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+}
+.btn-primary:hover  { opacity: 0.9; transform: translate(2px, -2px); box-shadow: -4px 4px 0px rgba(0,0,0,0.4); }
+.btn-primary:active { transform: translate(0); box-shadow: none; }
+.btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── Section divider ─────────────────────────────────────── */
+.section-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+/* ── Stat number ─────────────────────────────────────────── */
+.stat-num {
+  font-family: 'Bebas Neue', 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
+/* ── Native select — dark theme ──────────────────────────── */
+select {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding-left: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-size: 13px;
+}
+select:focus {
+  border-color: var(--text);
+}
+select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* ── Location fill flash ─────────────────────────────────── */
+@keyframes loc-fill {
+  0%   { border-color: var(--border); }
+  50%  { border-color: var(--text); }
+  100% { border-color: var(--border); }
+}
+.location-filled {
+  animation: loc-fill 0.8s ease forwards;
+}

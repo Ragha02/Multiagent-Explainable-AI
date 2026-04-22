@@ -1,0 +1,3 @@
+# this file keeps the ma_xai_outputs/ directory in version control
+# actual .png outputs are gitignored — regenerate them by running:
+#   python3 orchestrator.py
