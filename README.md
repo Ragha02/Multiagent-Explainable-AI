@@ -195,6 +195,40 @@ Outputs five publication-quality figures to `ma_xai_outputs/` — prediction res
 
 ---
 
+## Contributing & Collaboration
+
+**MA-XAI is open to features, research extensions, and collaborations — all via GitHub.**
+
+Whether you want to propose a new agent, improve an existing XAI method, plug in a new dataset, or just fix a bug — contributions are welcome.
+
+### Ways to contribute
+
+| Type | How |
+|---|---|
+| 🐛 **Bug fix** | Open an issue describing the problem, then submit a PR |
+| ✨ **New feature** | Open a feature request issue first — discuss before building |
+| 🤖 **New agent** | Follow the existing agent pattern (standalone module, clean interface) |
+| 📊 **New dataset** | Extend `agent1_data.py` with a new data source or region |
+| 🧪 **Tests** | Any coverage is welcome — the `agents/` modules are pure Python |
+| 📝 **Research collab** | Open an issue tagged `collaboration` and describe your angle |
+
+### Workflow
+
+```bash
+# Fork → clone your fork
+git clone https://github.com/YOUR_USERNAME/Multiagent-Explainable-AI.git
+
+# Create a feature branch
+git checkout -b feat/your-feature-name
+
+# Make changes, then push and open a Pull Request
+git push origin feat/your-feature-name
+```
+
+> Open your PR against the `main` branch. Include a short description of what it does and why. If it touches an agent's interface, update the relevant docstring.
+
+---
+
 <div align="center">
 
 *MA-XAI — because a number without a reason is just noise.*
